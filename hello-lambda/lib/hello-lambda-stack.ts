@@ -11,7 +11,7 @@ export class HelloLambdaStack extends cdk.Stack {
     // Lambda function
     const fn = new lambda.Function(this, 'MyFunction', {
       runtime: lambda.Runtime.PYTHON_3_12,
-      handler: 'index.handler',
+      handler: 'handler.myfunc1',
       code: lambda.Code.fromAsset(path.join(__dirname, 'lambda-handler')),
     });
 

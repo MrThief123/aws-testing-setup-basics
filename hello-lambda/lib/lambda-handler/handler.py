@@ -2,7 +2,7 @@
 
 import json
 
-def handler(event, context):
+def myfunc1(event, context):
     """
     AWS Lambda Python handler
     """
