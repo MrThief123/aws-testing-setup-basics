@@ -11,5 +11,5 @@ const env = {
   region: process.env.CDK_DEFAULT_REGION,
 };
 
-new HelloLambdaStack(app, 'HelloLambdaStack', { env });
+new HelloLambdaStack(app, 'HelloLambdaStack', { env, tags: { ["test"]: "true", ["test2"]: "false" }});
 new AnotherLambdaStack(app, 'AnotherLambdaStack', { env });
