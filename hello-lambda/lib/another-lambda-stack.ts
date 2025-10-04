@@ -2,18 +2,29 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export class AnotherLambdaStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // Create a secret in Secrets Manager
+
+    // Pull credentials from .env
+    const dbUsername = process.env.DB_USERNAME!;
+    const dbPassword = process.env.DB_PASSWORD!;
+    
+
+    // Create secret in Secrets Manager
     const dbSecret = new secretsmanager.Secret(this, 'DBSecret', {
       secretName: 'myDbCredentials',
-      generateSecretString: {
-        secretStringTemplate: JSON.stringify({ username: 'admin' }),
-        generateStringKey: 'password',
-      },
+      secretStringValue: cdk.SecretValue.unsafePlainText(
+        JSON.stringify({
+          username: dbUsername,
+          password: dbPassword,
+        })
+      ),
     });
 
     // Define Python Lambda function
