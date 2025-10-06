@@ -12,7 +12,7 @@ export class HelloLambdaStack extends cdk.Stack {
     const fn = new lambda.Function(this, 'MyFunction', {
       runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'handler.myfunc1',
-      code: lambda.Code.fromAsset(path.join(__dirname, 'lambda-handler')),
+      code: lambda.Code.fromAsset('lambda/lambda-handler'),
     });
 
     // API Gateway endpoint

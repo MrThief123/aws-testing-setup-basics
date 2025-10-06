@@ -31,7 +31,7 @@ export class AnotherLambdaStack extends cdk.Stack {
     const myLambda = new lambda.Function(this, 'MyLambda', {
       runtime: lambda.Runtime.PYTHON_3_11,
       handler: 'handler.secretsTest',
-      code: lambda.Code.fromAsset('lib/another-lambda-handler'), // points to your /lambda folder
+      code: lambda.Code.fromAsset('lambda/another-lambda-handler'), // points to your /lambda folder
       environment: {
         SECRET_NAME: dbSecret.secretName, // pass secret name to Lambda
       },
